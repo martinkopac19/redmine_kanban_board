@@ -22,7 +22,7 @@ class KanbanController < ApplicationController
     @total = scope.count
     @issues = @query.issues(conditions: cond, limit: RedmineKanbanBoard::CARD_LIMIT,
                             order: "#{Issue.table_name}.updated_on DESC",
-                            include: [:assigned_to, :tracker, :priority, :custom_values])
+                            include: [:assigned_to, :tracker, :priority, :fixed_version, :custom_values])
                     .sort_by { |i| [-(i.priority&.position || 0), -i.updated_on.to_i] }
     @blocked_status = RedmineKanbanBoard.blocked_status
     @blocked_field = RedmineKanbanBoard.blocked_field

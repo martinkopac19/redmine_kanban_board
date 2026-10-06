@@ -103,6 +103,15 @@ html[data-dark="1"] .kb-subject { color: var(--dm-text); }
 html[data-dark="1"] .kb-card-top, html[data-dark="1"] .kb-card-top .kb-id,
 html[data-dark="1"] .kb-card-foot, html[data-dark="1"] .kb-project { color: var(--dm-text-muted); }
 html[data-dark="1"] .kb-prio { background: var(--dm-surface); }
+/* svetlé štítky (dôvod blokovania, priorita, verzia) by na tmavom pozadí svietili */
+html[data-dark="1"] .kb-block { background: rgba(163, 0, 0, 0.22); color: var(--dm-negative, #ff8a8a); }
+html[data-dark="1"] .kb-card.kb-blocked { border-color: rgba(163, 0, 0, 0.45); }
+html[data-dark="1"] .kb-col-blocked .kb-col-count { background: rgba(163, 0, 0, 0.30); color: var(--dm-negative, #ff8a8a); }
+html[data-dark="1"] .kb-card.priority-high2 .kb-prio, html[data-dark="1"] .kb-card.priority-high3 .kb-prio,
+html[data-dark="1"] .kb-card.priority-high4 .kb-prio { background: rgba(255, 109, 10, 0.20); color: var(--dm-warning, #ffb37a); }
+html[data-dark="1"] .kb-card.priority-highest .kb-prio { background: rgba(181, 0, 0, 0.25); color: var(--dm-negative, #ff8a8a); }
+html[data-dark="1"] .kb-version { background: rgba(0, 135, 200, 0.20); color: var(--dm-info, #7cc4ea); }
+html[data-dark="1"] .kb-limit { background: rgba(255, 109, 10, 0.18); color: var(--dm-warning, #ffb37a); }
 html[data-dark="1"] .kb-dialog { background: var(--dm-surface); color: var(--dm-text); }
 html[data-dark="1"] .kb-dialog-head, html[data-dark="1"] .kb-dialog-foot { border-color: var(--dm-border); }
 html[data-dark="1"] .kb-dialog textarea { background: var(--dm-bg); color: var(--dm-text); border-color: var(--dm-border); }
