@@ -19,6 +19,7 @@ Redmine::Plugin.register :redmine_kanban_board do
   author 'Martin Kopáč'
   description 'Kanban board: one column per issue status, native issue filters, drag & drop status change, blocked reason.'
   version '0.1.0'
+  url 'https://github.com/martinkopac19/redmine_kanban_board'
   requires_redmine version_or_higher: '6.0'
 
   settings default: { 'blocked_field_id' => '', 'blocked_status_id' => '' }
