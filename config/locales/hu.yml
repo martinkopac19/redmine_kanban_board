@@ -1,0 +1,12 @@
+hu:
+  label_kanban: "Kanban"
+  project_module_kanban: "Kanban"
+  permission_view_kanban: "Kanban tábla megtekintése"
+  label_kanban_unassigned: "Nincs hozzárendelve"
+  label_kanban_days: "%{count} n"
+  label_kanban_reason_title: "Miért blokkolt a feladat?"
+  text_kanban_no_reason: "Nincs megadva ok"
+  text_kanban_closed_hint: "Csak az elmúlt %{days} napban módosított feladatok"
+  text_kanban_limit: "%{total} feladatból %{shown} látható. A többihez szűkítse a szűrőket."
+  text_kanban_not_allowed: "A feladat nem helyezhető át ebbe az állapotba: %{status} – a munkafolyamat ezt nem engedi."
+  text_kanban_reason_placeholder: "Nem kötelező – pl. a partner API-jára várunk"

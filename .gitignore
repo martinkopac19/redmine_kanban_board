@@ -1,0 +1,4 @@
+*.log
+*.rbc
+.DS_Store
+tmp/

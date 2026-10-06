@@ -1,0 +1,81 @@
+<% content_for :header_tags do %>
+  <%= stylesheet_link_tag 'kanban', plugin: 'redmine_kanban_board' %>
+  <%= javascript_include_tag 'kanban', plugin: 'redmine_kanban_board' %>
+<% end %>
+<% html_title l(:label_kanban) %>
+<% global = @project.nil? %>
+
+<div class="contextual">
+  <% if @saved_queries.any? %>
+    <%= select_tag 'kb_query', options_for_select([[l(:label_query) + '…', '']] + @saved_queries.map { |q| [q.name, q.id] }, @query.id),
+          class: 'kb-saved', onchange: "if(this.value){location.href='#{kanban_path_for(@project)}?query_id='+this.value}" %>
+  <% end %>
+  <%= link_to l(:label_issue_view_all), _project_issues_path(@project, @query.as_params), class: 'icon icon-list' %>
+</div>
+
+<h2><%= @query.new_record? ? l(:label_kanban) : "#{l(:label_kanban)} · #{@query.name}" %></h2>
+
+<%= form_tag(kanban_path_for(@project), method: :get, id: 'query_form') do %>
+  <%= hidden_field_tag 'set_filter', '1' %>
+  <div id="query_form_with_buttons" class="hide-when-print">
+    <div id="query_form_content">
+      <fieldset id="filters" class="collapsible">
+        <legend onclick="toggleFieldset(this);" class="icon icon-expanded">
+          <%= sprite_icon('angle-down') %><%= l(:label_filter_plural) %>
+        </legend>
+        <div><%= render partial: 'queries/filters', locals: { query: @query } %></div>
+      </fieldset>
+    </div>
+    <p class="buttons">
+      <%= link_to_function sprite_icon('checked', l(:button_apply)), '$("#query_form").submit()', class: 'icon icon-checked' %>
+      <%= link_to sprite_icon('reload', l(:button_clear)), kanban_path_for(@project, set_filter: 1), class: 'icon icon-reload' %>
+    </p>
+  </div>
+<% end %>
+
+<% if @total > @issues.size %>
+  <p class="kb-limit"><%= l(:text_kanban_limit, shown: @issues.size, total: @total) %></p>
+<% end %>
+
+<div id="kb-flash" class="flash error" hidden></div>
+
+<div class="kb-board"
+     data-move-url="<%= kanban_move_path %>"
+     data-global="<%= global ? '1' : '0' %>"
+     data-blocked-status="<%= @blocked_status&.id %>"
+     data-blocked-field="<%= @blocked_field ? '1' : '0' %>">
+  <% @statuses.each do |st| %>
+    <% cards = @by_status[st.id] || [] %>
+    <section class="kb-col <%= 'kb-col-closed' if st.is_closed %> <%= 'kb-col-blocked' if @blocked_status && st.id == @blocked_status.id %>"
+             data-status-id="<%= st.id %>" data-status-name="<%= st.name %>">
+      <header class="kb-col-head"<% if st.is_closed %> title="<%= l(:text_kanban_closed_hint, days: RedmineKanbanBoard::CLOSED_DAYS) %>"<% end %>>
+        <span class="kb-col-name"><%= st.name %></span>
+        <span class="kb-col-count"><%= cards.size %></span>
+      </header>
+      <div class="kb-col-body">
+        <% cards.each do |issue| %>
+          <%= render partial: 'kanban/card', locals: { issue: issue, since: @blocked_since[issue.id], blocked_status: @blocked_status,
+                                                       blocked_field: @blocked_field, global: global } %>
+        <% end %>
+      </div>
+    </section>
+  <% end %>
+</div>
+
+<%# Dôvod je nepovinný: Uložiť = Blocked s textom, Zrušiť = Blocked bez dôvodu,
+    krížik / Esc = presun sa nekoná (karta sa vráti). %>
+<dialog id="kb-reason" class="kb-dialog">
+  <form method="dialog">
+    <div class="kb-dialog-head">
+      <h3><%= l(:label_kanban_reason_title) %></h3>
+      <button type="submit" value="close" class="kb-dialog-close" formnovalidate aria-label="<%= l(:button_close) %>">&times;</button>
+    </div>
+    <div class="kb-dialog-body">
+      <textarea rows="3" maxlength="1000" placeholder="<%= l(:text_kanban_reason_placeholder) %>"></textarea>
+    </div>
+    <div class="kb-dialog-foot">
+      <button type="submit" value="skip" class="kb-btn-secondary" formnovalidate><%= l(:button_cancel) %></button>
+      <button type="submit" value="ok"><%= l(:button_save) %></button>
+    </div>
+  </form>
+</dialog>

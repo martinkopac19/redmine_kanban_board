@@ -1,0 +1,12 @@
+ro:
+  label_kanban: "Kanban"
+  project_module_kanban: "Kanban"
+  permission_view_kanban: "Vizualizare tablă Kanban"
+  label_kanban_unassigned: "Neatribuit"
+  label_kanban_days: "%{count} z"
+  label_kanban_reason_title: "De ce este blocat tichetul?"
+  text_kanban_no_reason: "Niciun motiv indicat"
+  text_kanban_closed_hint: "Doar tichetele modificate în ultimele %{days} zile"
+  text_kanban_limit: "Se afișează %{shown} din %{total} tichete. Restrângeți filtrele pentru a le vedea pe celelalte."
+  text_kanban_not_allowed: "Tichetul nu poate fi mutat în starea %{status} – fluxul de lucru nu permite acest lucru."
+  text_kanban_reason_placeholder: "Opțional – de ex. așteptăm API-ul partenerului"

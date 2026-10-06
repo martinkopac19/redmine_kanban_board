@@ -1,0 +1,12 @@
+pl:
+  label_kanban: "Kanban"
+  project_module_kanban: "Kanban"
+  permission_view_kanban: "Przeglądanie tablicy Kanban"
+  label_kanban_unassigned: "Nieprzypisane"
+  label_kanban_days: "%{count} d"
+  label_kanban_reason_title: "Dlaczego zagadnienie jest zablokowane?"
+  text_kanban_no_reason: "Nie podano powodu"
+  text_kanban_closed_hint: "Tylko zagadnienia zmienione w ciągu ostatnich %{days} dni"
+  text_kanban_limit: "Wyświetlono %{shown} z %{total} zagadnień. Zawęź filtry, aby zobaczyć resztę."
+  text_kanban_not_allowed: "Nie można przenieść zagadnienia do statusu %{status} – przepływ pracy na to nie pozwala."
+  text_kanban_reason_placeholder: "Opcjonalnie – np. czekamy na API partnera"

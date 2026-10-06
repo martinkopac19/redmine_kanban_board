@@ -1,0 +1,12 @@
+sk:
+  label_kanban: "Kanban"
+  project_module_kanban: "Kanban"
+  permission_view_kanban: "Zobraziť Kanban nástenku"
+  label_kanban_unassigned: "Nepriradené"
+  label_kanban_days: "%{count} d"
+  label_kanban_reason_title: "Prečo je úloha zablokovaná?"
+  text_kanban_no_reason: "Dôvod nie je uvedený"
+  text_kanban_closed_hint: "Len úlohy zmenené za posledných %{days} dní"
+  text_kanban_limit: "Zobrazených %{shown} z %{total} úloh. Pre zobrazenie ostatných zúžte filtre."
+  text_kanban_not_allowed: "Úlohu nejde presunúť do stavu %{status} – workflow ti to nedovolí."
+  text_kanban_reason_placeholder: "Nepovinné – napr. čakáme na API partnera"

@@ -1,0 +1,32 @@
+<%
+  is_blocked = blocked_status && issue.status_id == blocked_status.id
+  reason = blocked_field ? issue.custom_field_value(blocked_field).to_s : ''
+%>
+<article class="kb-card <%= issue.priority&.css_classes %> <%= 'kb-blocked' if is_blocked %>"
+         draggable="true" data-issue-id="<%= issue.id %>" data-status-id="<%= issue.status_id %>"
+         data-reason="<%= reason %>">
+  <div class="kb-card-top">
+    <%= link_to "##{issue.id}", issue_path(issue), class: 'kb-id' %>
+    <span class="kb-tracker"><%= issue.tracker.name %></span>
+    <span class="kb-prio"><%= issue.priority&.name %></span>
+  </div>
+  <%= link_to issue.subject, issue_path(issue), class: 'kb-subject' %>
+  <% if global %><div class="kb-project"><%= issue.project.name %></div><% end %>
+  <% if is_blocked %>
+    <div class="kb-block">
+      <span class="kb-lock" aria-hidden="true">
+        <svg viewBox="0 0 24 24" width="14" height="14"><rect x="5" y="11" width="14" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 11V8a4 4 0 018 0v3" fill="none" stroke="currentColor" stroke-width="2"/></svg>
+      </span>
+      <span class="kb-block-reason"><%= reason.presence || l(:text_kanban_no_reason) %></span>
+      <% if (d = kanban_blocked_days(since)) %><span class="kb-block-days"><%= d %></span><% end %>
+    </div>
+  <% end %>
+  <div class="kb-card-foot">
+    <% if issue.assigned_to %>
+      <span class="kb-assignee"><%= avatar(issue.assigned_to, size: 20) %><span><%= issue.assigned_to.name %></span></span>
+    <% else %>
+      <span class="kb-assignee kb-none"><%= l(:label_kanban_unassigned) %></span>
+    <% end %>
+    <% if issue.fixed_version %><span class="kb-version"><%= issue.fixed_version.name %></span><% end %>
+  </div>
+</article>

@@ -1,0 +1,12 @@
+en:
+  label_kanban: "Kanban"
+  project_module_kanban: "Kanban"
+  permission_view_kanban: "View Kanban board"
+  label_kanban_unassigned: "Unassigned"
+  label_kanban_days: "%{count} d"
+  label_kanban_reason_title: "Why is the task blocked?"
+  text_kanban_no_reason: "No reason given"
+  text_kanban_closed_hint: "Only tasks changed in the last %{days} days"
+  text_kanban_limit: "Showing %{shown} of %{total} tasks. Narrow the filters to see the rest."
+  text_kanban_not_allowed: "The task can’t be moved to %{status} – the workflow doesn’t allow it for you."
+  text_kanban_reason_placeholder: "Optional – e.g. waiting for the partner’s API"
